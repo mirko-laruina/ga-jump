@@ -15,3 +15,23 @@ body {
     position: absolute;
     bottom: 15%;
 }
+
+#counter {
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.player {
+    position: absolute;
+    left: 10%;
+    bottom: 15%;
+    width: 3%;
+    height: 10%;
+}
+
+.target {
+    background-color: red;
+}
