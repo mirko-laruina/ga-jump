@@ -1,5 +1,6 @@
 obstaclesArray = []
 count = 0
+gen = 0
 
 function play(){
     wrapperElem = document.getElementById("wrapper")

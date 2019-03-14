@@ -48,6 +48,9 @@ function Population(size){
                 }
             }
             if(life == false){
+                this.gen += 1
+                generationElem = document.getElementById("generation")
+                generationElem.textContent = "Generation: "+gen
                 self.nextGen();
                 clearInterval(iid)
             }
