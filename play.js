@@ -1,8 +1,15 @@
+
 function init(){
     wrapperElem = document.getElementById("wrapper")
 
-    o = new Obstacle();
-    setInterval(function(){
-            o.step();
-    }, 10)
+    ext_iid = setInterval(function(){
+        var o = new Obstacle();
+        var iid = setInterval(function(){
+                o.step();
+                if(o.left < -50){
+                    clearInterval(iid);
+                    wrapperElem.removeChild(o.elem);
+                }
+        }, 10)
+    }, 2000);
 }
