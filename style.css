@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+}
+
+#wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: khaki;
+}
+
+.obstacle {
+    background-color: black;
+    position: absolute;
+    bottom: 15%;
+}
