@@ -55,7 +55,7 @@ function Player(dna){
                             target.height*self.dna['heightWeight'] +
                             target.width*self.dna['widthWeight']
 
-                            if(coefficient > self.dna['jumpThreshold']*10)
+            if(coefficient > self.dna['jumpThreshold']*10)
             {
                 amplitude = self.dna['amplituteDistWeight']/distanceX
                             + target.height*self.dna['amplituteHeightWeight']
