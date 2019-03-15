@@ -18,7 +18,7 @@ function play(){
             count += 1;
             counterElem.textContent = Math.floor(count / 10);
         }, 10)
-    }, 3000);
+    }, Math.random()*3000+1500);
 
     pop = new Population(150);
     pop.periodicCheckStart();

@@ -42,6 +42,8 @@ function Dna(){
             //mutuation
             return Math.random()*200;
         }
+        retvalue = (var1+var2)/2;
+        retvalue += retvalue*(Math.random()-0.5)/20
         return (var1+var2)/2
     }
 }
