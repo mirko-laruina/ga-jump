@@ -1,31 +1,19 @@
 function Dna(){
-    this.distanceWeight;
-    this.heightWeight;
-    this.widthWeight;
-    this.amplituteDistWeight;
-    this.amplituteHeightWeight;
-    this.amplituteWidthWeight;
-    this.durationDistWeight;
-    this.durationHeightWeight;
-    this.durationWidthWeight;
-    this.jumpThreshold;
+    this.genes = []
 
     this.random = function(){
-        this.distanceWeight = Math.random()*200;
-        this.heightWeight = Math.random()*200;
-        this.widthWeight = Math.random()*200;
-        this.amplituteDistWeight = Math.random()*200;
-        this.amplituteHeightWeight = Math.random()*200;
-        this.amplituteWidthWeight = Math.random()*200;
-        this.durationDistWeight = Math.random()*200;
-        this.durationHeightWeight = Math.random()*200;
-        this.durationWidthWeight = Math.random()*200;
-        this.jumpThreshold = Math.random()*200;
+        for(var i = 0; i<19; i++){
+            this.genes[i] = Math.random()*200;
+        }
     }
 
     //not as it should
     this.crossover = function(mate){
-        this.singleCross(this.distanceWeight, mate.distanceWeight)
+        var mid = Math.random()*this.genes.length;
+        for(var i = 0; i<mid; i++){
+            this.genes[i] = mate.genes[i];
+        }
+        /*this.singleCross(this.distanceWeight, mate.distanceWeight)
         this.singleCross(this.heightWeight, mate.heightWeight)
         this.singleCross(this.widthWeight, mate.widthWeight)
         this.singleCross(this.amplituteDistWeight, mate.amplituteDistWeight)
@@ -34,7 +22,7 @@ function Dna(){
         this.singleCross(this.durationDistWeight, mate.durationDistWeight)
         this.singleCross(this.durationHeightWeight, mate.durationHeightWeight)
         this.singleCross(this.durationWidthWeight, mate.durationWidthWeight)
-        this.singleCross(this.jumpThreshold, mate.jumpThreshold)
+        this.singleCross(this.jumpThreshold, mate.jumpThreshold)*/
     }
 
     this.singleCross = function(var1, var2){
