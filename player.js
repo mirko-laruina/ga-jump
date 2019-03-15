@@ -51,21 +51,21 @@ function Player(dna){
 
             //take action
             //obstacle distance, height, width -> jump amplitude & duration
-            coefficient = distanceX*self.dna['distanceWeight'] +
+            coefficient = self.dna['distanceWeight']/distanceX +
                             target.height*self.dna['heightWeight'] +
                             target.width*self.dna['widthWeight']
 
-                            if(coefficient > self.dna['jumpThreshold']*2)
+                            if(coefficient > self.dna['jumpThreshold']*10)
             {
-                amplitude = distanceX*self.dna['amplituteDistWeight']
+                amplitude = self.dna['amplituteDistWeight']/distanceX
                             + target.height*self.dna['amplituteHeightWeight']
                             + target.width*self.dna['amplituteWidthWeight']
-                duration = distanceX*self.dna['durationDistWeight']
+                duration = self.dna['durationDistWeight']/distanceX
                             + target.height*self.dna['durationHeightWeight']
                             + target.width*self.dna['durationWidthWeight']
 
-                amplitude = amplitude/300
-                duration = duration/70
+                amplitude = amplitude/100
+                duration = duration/30
                 self.jump(amplitude, duration);
             }
 
