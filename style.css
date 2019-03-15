@@ -24,6 +24,14 @@ body {
     font-weight: bold;
 }
 
+#generation {
+    position: absolute;
+    top: 10%;
+    left: 2%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .player {
     position: absolute;
     left: 10%;
