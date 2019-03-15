@@ -4,7 +4,6 @@ function Population(size){
     this.matingpool = []
     for(var i = 0 ; i<size; i++){
         var d = new Dna();
-        d.random();
         var p = new Player(d);
         this.playerArray.push(p);
         p.play();
@@ -14,7 +13,8 @@ function Population(size){
         //populate matingpool
         for(var i = 0; i<this.popsize; i++){
             // quite processing heavy but that's ok
-            for(var j = 0; j < Math.floor(this.playerArray[i].score/10); j++){
+            var times = Math.floor(this.playerArray[i].score);
+            for(var j = 0; j < times+1; j++){
                 this.matingpool.push(this.playerArray[i].dna);
             }
         }
@@ -23,11 +23,11 @@ function Population(size){
         this.playerArray = [];
 
         for(var i = 0; i<this.popsize; i++){
-            dna1 = this.matingpool[Math.floor(Math.random()*this.matingpool.length)];
-            dna2 = this.matingpool[Math.floor(Math.random()*this.matingpool.length)];
-            console.log(dna1);
-            dna1.crossover(dna2);
-            var p = new Player(dna1);
+            var dna1 = this.matingpool[Math.floor(Math.random()*this.matingpool.length)];
+            var dna2 = this.matingpool[Math.floor(Math.random()*this.matingpool.length)];
+            var dna3 = new Dna();
+            dna3.crossover(dna1, dna2);
+            var p = new Player(dna3);
             this.playerArray.push(p);
             p.play();
         }
@@ -42,7 +42,7 @@ function Population(size){
         var iid = setInterval(function(self){
             life = false
             for(var i = 0; i< self.popsize; i++){
-                if(self.playerArray[i].score == 0){
+                if(self.playerArray[i].score == -1){
                     life = true;
                     break;
                 }
@@ -54,7 +54,7 @@ function Population(size){
                 self.nextGen();
                 clearInterval(iid)
             }
-            console.log(life);
+            //console.log(life);
         }, 1000, this)
     }
 }

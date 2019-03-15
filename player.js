@@ -1,9 +1,12 @@
+idCounter = 0;
+
 function Player(dna){
     this.elem = document.createElement('div');
     this.elem.classList.add('player');
+    this.elem.setAttribute('id', idCounter++);
     this.posY = 0
     this.dna = dna
-    this.score = 0
+    this.score = -1
     this.elem.style.backgroundColor = 'rgb(' + Math.random()*255 +
                                         ',' + Math.random()*255 +
                                         ',' + Math.random()*255 +
@@ -44,7 +47,7 @@ function Player(dna){
             distanceX = target.left - 13;
             if(distanceX < 0
                 && self.posY < target.height){
-                console.log(self.posY, target.height);
+               // console.log(self.posY, target.height);
                 self.die()
                 clearInterval(iid);
             }
@@ -53,13 +56,13 @@ function Player(dna){
             //obstacle distance, height, width -> jump amplitude & duration
             coefficient =  self.getCoefficient(distanceX, target.height, target.width, 0)
 
-            if(coefficient > self.dna.genes[0]*10)
+            if(coefficient > self.dna.genes[0])
             {
                 amplitude = self.getCoefficient(distanceX, target.height, target.width, 1)
                 duration = self.getCoefficient(distanceX, target.height, target.width, 2)
 
-                amplitude = amplitude/500
-                duration = duration/200
+                if(amplitude > 40) amplitude = 40;
+                if(duration > 200) duration = 200;
                 self.jump(amplitude, duration);
             }
 
@@ -70,8 +73,8 @@ function Player(dna){
     this.getCoefficient = function(distance, width, height, base){
         var i = base*6+1;
         var genes = this.dna.genes;
-        return  distance*genes[i++] +
-                height*genes[i++] +
+        //return  distance*genes[i++] +
+        return  height*genes[i++] +
                 width*genes[i++] +
                 genes[i++]/distance + 
                 genes[i++]/height + 

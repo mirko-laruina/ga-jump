@@ -1,38 +1,28 @@
 function Dna(){
     this.genes = []
 
-    this.random = function(){
-        for(var i = 0; i<19; i++){
-            this.genes[i] = Math.random()*200;
-        }
-    }
+    for(var i = 0; i<19; i++)
+        this.genes.push(Math.random()*200);
 
-    //not as it should
-    this.crossover = function(mate){
-        var mid = Math.random()*this.genes.length;
-        for(var i = 0; i<mid; i++){
-            this.genes[i] = mate.genes[i];
-        }
-        /*this.singleCross(this.distanceWeight, mate.distanceWeight)
-        this.singleCross(this.heightWeight, mate.heightWeight)
-        this.singleCross(this.widthWeight, mate.widthWeight)
-        this.singleCross(this.amplituteDistWeight, mate.amplituteDistWeight)
-        this.singleCross(this.amplituteHeightWeight, mate.amplituteHeightWeight)
-        this.singleCross(this.amplituteWidthWeight, mate.amplituteWidthWeight)
-        this.singleCross(this.durationDistWeight, mate.durationDistWeight)
-        this.singleCross(this.durationHeightWeight, mate.durationHeightWeight)
-        this.singleCross(this.durationWidthWeight, mate.durationWidthWeight)
-        this.singleCross(this.jumpThreshold, mate.jumpThreshold)*/
-    }
+    this.crossover = function(dna1, dna2){
+        if(dna1 != undefined && dna2 != undefined){
+            if(Math.random() < 0.01){
+                for(var i = 0; i<19; i++)
+                this.genes.push(Math.random()*200);
+                return;
+            }
 
-    this.singleCross = function(var1, var2){
-        if(Math.random() < 0.05){
-            //mutuation
-            return Math.random()*200;
-        }
+            var mid = Math.random()*dna1.genes.length;
+            for(var i = 0; i<mid; i++){
+                this.genes[i] = dna1.genes[i];
+            }
+            for(var i = mid; i<dna1.genes.length; i++){
+                this.genes[i] = dna2.genes[i];
+            }
 
-        retvalue = (var1+var2)/2;
-        retvalue += retvalue*(Math.random()-0.5)/20
-        return retvalue
+            for(var i = 0; i<this.genes.length; i++){
+                this.genes[i] += (Math.random()-0.5)*this.genes[i]/10
+            }
+        }
     }
 }
