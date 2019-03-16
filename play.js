@@ -1,7 +1,7 @@
 obstaclesArray = []
 count = 0
 gen = 0
-var GRAPH =0
+var graphs = {}, generationElem
 
 function play(){
     wrapperElem = document.getElementById("wrapper")
@@ -23,12 +23,13 @@ function play(){
                 }
             counterElem.textContent = Math.floor(count);
         }, 10)
-    }, 2500);
+    }, 1500);
 
     pop = new Population(350);
     pop.periodicCheckStart();
 
-    GRAPH = new Graph(); 
+    graphs['score'] = new Graph('gen', 'score', 'score-graph');
+    generationElem = document.getElementById("generation")
 }
 
 function clean(){

@@ -48,16 +48,18 @@ function Population(size){
                 }
             }
             if(life == false){
-                GRAPH.addValue(count);
-                //alert(count);
-                this.gen += 1
-                generationElem = document.getElementById("generation")
-                generationElem.textContent = "Generation: "+gen
+                self.updateUI();
                 self.nextGen();
-                
                 clearInterval(iid)
             }
             //console.log(life);
         }, 1000, this)
+    }
+
+    this.updateUI = function(){
+        graphs['score'].addValue(count);
+        //alert(count);
+        this.gen += 1
+        generationElem.textContent = "Generation: "+gen
     }
 }

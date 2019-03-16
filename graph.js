@@ -1,4 +1,4 @@
-function Graph(){
+function Graph(xVar, yVar, elemId){
 	this.height = 200
 	this.width  = 400
 
@@ -10,7 +10,8 @@ function Graph(){
 
 	this.maxVal = 0;
 
-	this.graph = document.getElementById("graph")
+	this.elem = document.getElementById(elemId)
+	this.elem.classList.add('graph')
 
 	var xAxis = this.newLine(0, 0, 0, 200)
 	xAxis.style.stroke = "rgb(0,0,0)"
@@ -31,7 +32,7 @@ Graph.prototype.newLine = function(_x1, _y1, _x2, _y2){
 	line_.setAttribute("y2", _y2);
 	line_.style.stroke = "rgb(170,0,0)"
 	line_.style.strokeWidth = "2"
-	graph.appendChild(line_);
+	this.elem.appendChild(line_);
 	return line_
 }
 
