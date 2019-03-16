@@ -8,19 +8,17 @@ function Graph(){
 	this.values = []
 	this.values[0] = 0
 
-	var graph = document.getElementById("graph")
+	this.maxVal = 0;
+
+	this.graph = document.getElementById("graph")
 
 	var xAxis = this.newLine(0, 0, 0, 200)
 	xAxis.style.stroke = "rgb(0,0,0)"
-	xAxis.style.strokeWidth = "2"
+	xAxis.style.strokeWidth = "4"
 
 	var yAxis = this.newLine(0, 200, 400, 200)
 	yAxis.style.stroke = "rgb(0,0,0)"
-	yAxis.style.strokeWidth = "2"
-
-
-	var line = document.createElement("line");
-	graph.appendChild(line);
+	yAxis.style.strokeWidth = "4"
 }
 
 
@@ -44,11 +42,40 @@ Graph.prototype.addLine = function(_y){
 	var oldY = 200 - this.values[this.linesN];
 	var newX = 40 * (this.linesN+1)
 	var newY = this.height - _y;
+
 	var newLine = this.newLine(oldX, oldY, newX, newY);
+
 	this.lines.push(newLine)
 	this.linesN++;
 
 	this.values[this.linesN] = _y;
 
 	//alert("efaffsa")
+}
+
+Graph.prototype.addValue = function(_y){
+	//Elimino tutte le vecchie linee
+	for (var i = 0; i<this.lines.length; i++) {
+	    this.lines[i].remove() 
+	}
+
+	if(_y > this.maxVal){
+		this.maxVal = _y;
+	}
+
+	this.values.push(_y)
+	this.linesN++;
+
+	for (var i = 1; i < this.values.length; i++) {
+		var step = this.width / (this.values.length - 1)
+
+		var oldX = step * (i - 1)
+		var oldY = (1 - this.values[i-1] / this.maxVal) * this.height;
+		var newX = step * i
+		var newY = (1 - this.values[i] / this.maxVal) * this.height;
+
+		var newLine = this.newLine(oldX, oldY, newX, newY);
+
+		this.lines.push(newLine)
+	}
 }
