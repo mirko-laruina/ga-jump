@@ -32,6 +32,12 @@ body {
     font-weight: bold;
 }
 
+#graph{
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
+
 .player {
     position: absolute;
     left: 10%;

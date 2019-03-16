@@ -1,6 +1,7 @@
 obstaclesArray = []
 count = 0
 gen = 0
+var GRAPH =0
 
 function play(){
     wrapperElem = document.getElementById("wrapper")
@@ -23,6 +24,8 @@ function play(){
 
     pop = new Population(150);
     pop.periodicCheckStart();
+
+    GRAPH = new Graph(); 
 }
 
 function clean(){
