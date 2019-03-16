@@ -48,7 +48,7 @@ function Population(size){
                 }
             }
             if(life == false){
-                GRAPH.addLine(count/32);
+                GRAPH.addValue(count);
                 //alert(count);
                 this.gen += 1
                 generationElem = document.getElementById("generation")
