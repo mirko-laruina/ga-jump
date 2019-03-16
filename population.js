@@ -48,10 +48,13 @@ function Population(size){
                 }
             }
             if(life == false){
+                GRAPH.addLine(count/32);
+                //alert(count);
                 this.gen += 1
                 generationElem = document.getElementById("generation")
                 generationElem.textContent = "Generation: "+gen
                 self.nextGen();
+                
                 clearInterval(iid)
             }
             //console.log(life);
