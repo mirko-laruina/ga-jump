@@ -17,12 +17,15 @@ function play(){
                     obstaclesArray.shift();
                     obstaclesArray[0].elem.classList.add('target');
                 }
-            count += 1;
-            counterElem.textContent = Math.floor(count / 10);
-        }, 10)
-    }, Math.random()*3000+1500);
 
-    pop = new Population(150);
+                if(o.left < 10){
+                    count += 1;
+                }
+            counterElem.textContent = Math.floor(count);
+        }, 10)
+    }, 2500);
+
+    pop = new Population(350);
     pop.periodicCheckStart();
 
     GRAPH = new Graph(); 

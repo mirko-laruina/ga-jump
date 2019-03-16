@@ -1,50 +1,28 @@
 function Dna(){
-    this.distanceWeight;
-    this.heightWeight;
-    this.widthWeight;
-    this.amplituteDistWeight;
-    this.amplituteHeightWeight;
-    this.amplituteWidthWeight;
-    this.durationDistWeight;
-    this.durationHeightWeight;
-    this.durationWidthWeight;
-    this.jumpThreshold;
+    this.genes = []
 
-    this.random = function(){
-        this.distanceWeight = Math.random()*200;
-        this.heightWeight = Math.random()*200;
-        this.widthWeight = Math.random()*200;
-        this.amplituteDistWeight = Math.random()*200;
-        this.amplituteHeightWeight = Math.random()*200;
-        this.amplituteWidthWeight = Math.random()*200;
-        this.durationDistWeight = Math.random()*200;
-        this.durationHeightWeight = Math.random()*200;
-        this.durationWidthWeight = Math.random()*200;
-        this.jumpThreshold = Math.random()*200;
-    }
+    for(var i = 0; i<19; i++)
+        this.genes.push(Math.random()*200);
 
-    //not as it should
-    this.crossover = function(mate){
-        this.singleCross(this.distanceWeight, mate.distanceWeight)
-        this.singleCross(this.heightWeight, mate.heightWeight)
-        this.singleCross(this.widthWeight, mate.widthWeight)
-        this.singleCross(this.amplituteDistWeight, mate.amplituteDistWeight)
-        this.singleCross(this.amplituteHeightWeight, mate.amplituteHeightWeight)
-        this.singleCross(this.amplituteWidthWeight, mate.amplituteWidthWeight)
-        this.singleCross(this.durationDistWeight, mate.durationDistWeight)
-        this.singleCross(this.durationHeightWeight, mate.durationHeightWeight)
-        this.singleCross(this.durationWidthWeight, mate.durationWidthWeight)
-        this.singleCross(this.jumpThreshold, mate.jumpThreshold)
-    }
+    this.crossover = function(dna1, dna2){
+        if(dna1 != undefined && dna2 != undefined){
+            if(Math.random() < 0.01){
+                for(var i = 0; i<19; i++)
+                this.genes.push(Math.random()*200);
+                return;
+            }
 
-    this.singleCross = function(var1, var2){
-        if(Math.random() < 0.05){
-            //mutuation
-            return Math.random()*200;
+            var mid = Math.random()*dna1.genes.length;
+            for(var i = 0; i<mid; i++){
+                this.genes[i] = dna1.genes[i];
+            }
+            for(var i = mid; i<dna1.genes.length; i++){
+                this.genes[i] = dna2.genes[i];
+            }
+
+            for(var i = 0; i<this.genes.length; i++){
+                this.genes[i] += (Math.random()-0.5)*this.genes[i]/10
+            }
         }
-
-        retvalue = (var1+var2)/2;
-        retvalue += retvalue*(Math.random()-0.5)/20
-        return retvalue
     }
 }
