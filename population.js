@@ -10,6 +10,17 @@ function Population(size){
     }
 
     this.nextGen = function(){
+        gen += 1
+        generationElem = document.getElementById("generation")
+        generationElem.textContent = "Generation: " + gen
+        this.updateScore();
+        this.generatePlayers();
+        clean();
+        this.periodicCheckStart();
+        this.updateWeightGraph();
+    }
+
+    this.generatePlayers = function(){
         //populate matingpool
         for(var i = 0; i<this.popsize; i++){
             // quite processing heavy but that's ok
@@ -33,8 +44,6 @@ function Population(size){
         }
 
         this.matingpool = [];
-        clean();
-        this.periodicCheckStart();
     }
 
     //check every seconds for life
@@ -48,18 +57,22 @@ function Population(size){
                 }
             }
             if(life == false){
-                self.updateUI();
                 self.nextGen();
-                clearInterval(iid)
+                clearInterval(iid);
             }
             //console.log(life);
         }, 1000, this)
     }
 
-    this.updateUI = function(){
+    this.updateScore = function(){
         graphs['score'].addValue(count);
-        //alert(count);
-        this.gen += 1
-        generationElem.textContent = "Generation: "+gen
+    }
+
+    this.updateWeightGraph = function(){
+        graphs['weigth'].clean();
+        for(var i = 0; i < this.popsize; i++){
+            weigth = this.playerArray[i].dna.genes[5]; //just a random 5
+            graphs['weigth'].addValue(weigth);
+        }
     }
 }

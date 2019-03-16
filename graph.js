@@ -54,6 +54,14 @@ Graph.prototype.addLine = function(_y){
 	//alert("efaffsa")
 }
 
+Graph.prototype.clean = function(){
+	for(var i = 0; i < this.lines.length; i++){
+		this.lines[i].remove()
+	}
+	this.linesN = 0; //??*/
+	this.values = []
+}
+
 Graph.prototype.addValue = function(_y){
 	//Elimino tutte le vecchie linee
 	for (var i = 0; i<this.lines.length; i++) {

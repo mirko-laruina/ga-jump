@@ -38,6 +38,9 @@ body {
     left: 30%;
 }
 
+#weight-graph {
+    left: 60%;
+}
 .player {
     position: absolute;
     left: 10%;
