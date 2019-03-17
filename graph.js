@@ -50,8 +50,6 @@ Graph.prototype.addLine = function(_y){
 	this.linesN++;
 
 	this.values[this.linesN] = _y;
-
-	//alert("efaffsa")
 }
 
 Graph.prototype.clean = function(){
@@ -62,7 +60,7 @@ Graph.prototype.clean = function(){
 	this.values = []
 }
 
-Graph.prototype.addValue = function(_y){
+Graph.prototype.addValue = function(_y, addOnly){
 	//Elimino tutte le vecchie linee
 	for (var i = 0; i<this.lines.length; i++) {
 	    this.lines[i].remove() 
@@ -74,7 +72,18 @@ Graph.prototype.addValue = function(_y){
 
 	this.values.push(_y)
 	this.linesN++;
+	if(!addOnly)
+		this.draw();
+}
 
+Graph.prototype.addBatchValue = function(_batch){
+	for(var i = 0; i<_batch.length; i++){
+		this.addValue(_batch[i], true);
+	}
+	this.draw();
+}
+
+Graph.prototype.draw = function(){
 	for (var i = 1; i < this.values.length; i++) {
 		var step = this.width / (this.values.length - 1)
 

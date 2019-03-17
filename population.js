@@ -70,9 +70,10 @@ function Population(size){
 
     this.updateWeightGraph = function(){
         graphs['weigth'].clean();
+        weigths = []
         for(var i = 0; i < this.popsize; i++){
-            weigth = this.playerArray[i].dna.genes[5]; //just a random 5
-            graphs['weigth'].addValue(weigth);
+            weigths.push(this.playerArray[i].dna.genes[5]) //just a random 5
         }
+        graphs['weigth'].addBatchValue(weigths);
     }
 }
