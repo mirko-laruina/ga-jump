@@ -74,6 +74,9 @@ function Population(size){
         for(var i = 0; i < this.popsize; i++){
             weigths.push(this.playerArray[i].dna.genes[5]) //just a random 5
         }
+        weigths.sort(function(a, b){
+            return a - b;
+        })
         graphs['weigth'].addBatchValue(weigths);
     }
 }

@@ -56,7 +56,7 @@ function Player(dna){
             //obstacle distance, height, width -> jump amplitude & duration
             coefficient =  self.getCoefficient(distanceX, target.height, target.width, 0)
 
-            if(coefficient > self.dna.genes[0]*2)
+            if(coefficient > self.dna.genes[0]*300)
             {
                 amplitude = self.getCoefficient(distanceX, target.height, target.width, 1)
                 duration = self.getCoefficient(distanceX, target.height, target.width, 2)
