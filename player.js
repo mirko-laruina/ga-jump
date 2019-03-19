@@ -61,9 +61,9 @@ function Player(dna){
                 amplitude = self.getCoefficient(distanceX, target.height, target.width, 1)
                 duration = self.getCoefficient(distanceX, target.height, target.width, 2)
 
-                if(amplitude > 40) amplitude = 40;
+                if(amplitude > 1000) amplitude = 1000;
                 if(duration > 200) duration = 200;
-                self.jump(amplitude, duration/2);
+                self.jump(amplitude/25, duration/2);
             }
 
 
